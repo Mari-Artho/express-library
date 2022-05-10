@@ -3,6 +3,7 @@ const nanoId = require('nanoid');
 const { json } = require('express/lib/response');
 var router = express.Router();
 
+//Book list
 let books = [
     {
     id:nanoId.nanoid(),
@@ -39,29 +40,38 @@ let books = [
 ]
 
 router.get('/', (req, res)=>{
+    //add css
+    let htmlHead = '<link rel="stylesheet" href="/stylesheets/style.css">'
 
     let printBooks = `
-    <div style='display = flex'>
-        <h2 style='color:orange'>Our bookshelf</h2>
+    <div>
+        <h2 class='books-h2'>Our bookshelf</h2>
     `
-   
-    books.forEach((book)=>{
-        printBooks += `
-        <section style='display: flex'>
-        <div>
-        <a href='/books/${book.id}'>
-        <p>${book.bookName} </p>
-        <img src='/images/${book.images}' width='180px' height='250px'></a>
-        </div>
-        </section>
-        `
-    })
-    
+
+    //Link to add new book.
     printBooks += ` 
-    <div><a href = '/books/newBook'>Add a new book</a></div>
+    <div class='add-newBook'><a href = '/books/newBook'>Add a new book</a></div>
     </div>
     `
-    res.send(printBooks);
+    //Print books.
+    books.forEach((book)=>{
+        printBooks += `
+        <div class='books-list'>
+        <div>
+        <a href='/books/${book.id}'>
+        <img src='/images/${book.images}' width='180px' height='250px'>
+        <p>${book.bookName} </p></a>
+        </div>
+        </div>
+        `
+    })
+
+    //Link to previous page.
+    printBooks += `
+    <div class='back-page'><a href="/">Back to home</a></div>
+    `
+    
+    res.send(htmlHead + printBooks);
 })
 
 router.get('/newBook', (req, res)=>{
@@ -74,7 +84,7 @@ router.get('/newBook', (req, res)=>{
     <div><button type='submit'>SAVE</div>
     `
 
-    res.send(form);
+    res.send( form);
 })
 
 router.get('/:id', (req, res)=>{
