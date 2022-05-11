@@ -42,10 +42,11 @@ let books = [
 router.get('/', (req, res)=>{
     //add css
     let htmlHead = '<link rel="stylesheet" href="/stylesheets/style.css">'
-
+    
+    //print books.
     let printBooks = `
     <div>
-        <h2 class='books-h2'>Our bookshelf</h2>
+        <h2 class='books-h2'>Our bookhelf</h2>
     `
 
     //Link to add new book.
@@ -74,17 +75,20 @@ router.get('/', (req, res)=>{
     res.send(htmlHead + printBooks);
 })
 
+//Form add new book.
 router.get('/newBook', (req, res)=>{
     let form = `
-    <form action='newBook' method='post'>
+    <form style="text-align:center; font:Helvetica; padding:30px; height:50px;" action='newBook' method='post'>
     <h2>Add a new book</h2>
-    <div><input type='text' name='bookName'>Name</div>
-    <div><input type='text' name='author'>Author</div>
-    <div><input type='text' name='pages'>Pages</div>
-    <div><button type='submit'>SAVE</div>
+    <div>Name <input type='text' name='bookName'></div>
+    <div>Author <input type='text' name='author'></div>
+    <div>Pages <input type='text' name='pages'></div>
+    <img alt="Books image">
+    <div style="margin:30px;"><button type='submit'>SAVE</div>
+    <div class='back-page'><a href="/books">Back to bookhelf</a></div>
     `
 
-    res.send( form);
+    res.send(form);
 })
 
 router.get('/:id', (req, res)=>{
