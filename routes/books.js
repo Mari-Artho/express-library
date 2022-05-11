@@ -11,7 +11,7 @@ let books = [
     author: ' Amanda Hesser',
     pages: 336,
     images: 'amanda.jpg',
-    rented: false
+    borrowed: false
     },
     {
     id:nanoId.nanoid(),
@@ -19,7 +19,7 @@ let books = [
     author: 'Marie Kondo',
     pages: 304,
     images: 'konmari.jpg',
-    rented: false   
+    borrowed: false   
     },
     {
     id:nanoId.nanoid(),
@@ -27,7 +27,7 @@ let books = [
     author: 'Jennifer McMahon ',
     pages: 349,
     images: 'children.jpg',
-    rented: false   
+    borrowed: false   
     },
     {
     id:nanoId.nanoid(),
@@ -35,10 +35,11 @@ let books = [
     author: 'Fredrik Backman  ',
     pages: 337,
     images: 'ove.jpg',
-    rented: true   
+    borrowed: true   
     },
 ]
 
+//Print books
 router.get('/', (req, res)=>{
     //add css
     let htmlHead = '<link rel="stylesheet" href="/stylesheets/style.css">'
@@ -71,9 +72,12 @@ router.get('/', (req, res)=>{
     printBooks += `
     <div class='back-page'><a href="/">Back to home</a></div>
     `
-    
     res.send(htmlHead + printBooks);
 })
+
+//Borrow a book
+
+
 
 //Form add new book.
 router.get('/newBook', (req, res)=>{
@@ -84,13 +88,14 @@ router.get('/newBook', (req, res)=>{
     <div>Author <input type='text' name='author'></div>
     <div>Pages <input type='text' name='pages'></div>
     <img alt="Books image">
-    <div style="margin:30px;"><button type='submit'>SAVE</div>
-    <div class='back-page'><a href="/books">Back to bookhelf</a></div>
+    <div style="margin:30px;"><button style="height:30px;" type='submit'>SAVE</div>
+    <div class='back-page'><a href="/books">Back to bookshelf</a></div>
     `
 
     res.send(form);
 })
 
+//Print book's detail
 router.get('/:id', (req, res)=>{
     let foundBook = books.find((book)=> book.id == req.params.id)
     if(!foundBook){
@@ -98,26 +103,28 @@ router.get('/:id', (req, res)=>{
     }
 
     let bookInfo = `
-    <div>
+    <div style="text-align:center; font:Helvetica; padding:30px; height:50px;">
     <img src='/images/${foundBook.images}' width='180px' height='250px'></a>
     <h3>Title: ${foundBook.bookName}</h3>
     <h3>Author: ${foundBook.author}</h3>
     <h3>${foundBook.pages} pages</h3>
-    <h3>${foundBook.rented ? 'Loan' : "Available"}</h3>
-    <h3>${foundBook.rented ? 'This book is not available' : `<button>Borrow</button>`}</h3>
-    
+    <h3>${foundBook.borrowed ? 'Borrowed' : "Available"}</h3>
+
+    <h3>${foundBook.borrowed ? 'This book is not available' : `<input type="submit" id="saveBtn" value="BORROW" style="height:40px;"></input><a href ='/borrow'>BORROW</a>`}</h3>
+
+    <div class='back-page'><a href="/books">Back to bookshelf</a></div>
     </div>
     `
-
     res.send(bookInfo);
 })
 
+//Save new book
 router.post('/newBook', (req, res)=>{
-    let newBook = {...req.body, id: nanoId.nanoid(), rented:false}
+    let newBook = {...req.body, id: nanoId.nanoid(), borrowed:false}
     books.push(newBook)
 
     res.redirect('/books')
-})
+});
 
-module.exports = router
+module.exports = router;
 
