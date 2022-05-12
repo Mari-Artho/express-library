@@ -1,0 +1,34 @@
+[
+    {
+    "id":"nanoId.nanoid()",
+    "bookName":"Cooking for Mr. Latte",
+    "author": "Amanda Hesser",
+    "pages": 336,
+    "images": "amanda.jpg",
+    "borrowed": "false"
+    },
+    {
+    "id":"nanoId.nanoid()",
+    "bookName": "Spark Joy",
+    "author": "Marie Kondo",
+    "pages": 304,
+    "images": "konmari.jpg",
+    "borrowed": false   
+    },
+    {
+    "id":"nanoId.nanoid()",
+    "bookName": "The Children on the Hill",
+    "author": "Jennifer McMahon",
+    "pages": 349,
+    "images": "children.jpg",
+    "borrowed": false   
+    },
+    {
+    "id":"nanoId.nanoid()",
+    "bookName": "A Man Called Ove",
+    "author": "Fredrik Backman",
+    "pages": 337,
+    "images": "ove.jpg",
+    "borrowed": true   
+    }
+]
