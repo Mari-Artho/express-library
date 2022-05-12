@@ -47,7 +47,7 @@ router.get('/', (req, res)=>{
     //print books.
     let printBooks = `
     <div>
-        <h2 class='books-h2'>Our bookhelf</h2>
+        <h2 class='books-h2'>Our bookshelf</h2>
     `
 
     //Link to add new book.
@@ -110,7 +110,7 @@ router.get('/:id', (req, res)=>{
     <h3>${foundBook.pages} pages</h3>
     <h3>${foundBook.borrowed ? 'Borrowed' : "Available"}</h3>
 
-    <h3>${foundBook.borrowed ? 'This book is not available' : `<input type="submit" id="saveBtn" value="BORROW" style="height:40px;"></input><a href ='/borrow'>BORROW</a>`}</h3>
+    <h3>${foundBook.borrowed ? 'This book is not available' : `<a href ='/borrow' style="border: solid; text-decoration: none;border-color:black; color:black; padding:10px; margin:20px;">BORROW</a>`}</h3>
 
     <div class='back-page'><a href="/books">Back to bookshelf</a></div>
     </div>
