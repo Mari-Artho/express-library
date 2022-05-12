@@ -122,5 +122,15 @@ router.post('/newBook', (req, res)=>{
     res.redirect('/books')
 });
 
+//Borrow a book
+router.post('/borrow', (req, res)=>{
+    let borrowBook = {...req.body, id: nanoId.nanoid(), borrowed:true}
+    books.push(borrowBook)
+  
+    res.redirect('/books');
+    res.json(borrowBook);
+  });
+  
+
 module.exports = router;
 
