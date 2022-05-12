@@ -75,23 +75,20 @@ router.get('/', (req, res)=>{
     res.send(htmlHead + printBooks);
 })
 
-//Borrow a book
-
-
-
 //Form add new book.
 router.get('/newBook', (req, res)=>{
     let form = `
-    <form style="text-align:center; font:Helvetica; padding:30px; height:50px;" action='newBook' method='post'>
+    <body style="background-image:url('/images/white2.jpg');">
+    <form style="text-align:center; font:Helvetica; margin:30px; height:60px;" action='newBook' method='post'>
     <h2>Add a new book</h2>
-    <div>Name <input type='text' name='bookName'></div>
-    <div>Author <input type='text' name='author'></div>
-    <div>Pages <input type='text' name='pages'></div>
+    <p>NAME <input type='text' name='bookName'></p>
+    <p>AUTHOR <input type='text' name='author'></p>
+    <p>PAGES<input type='text' name='pages'></p>
     <img alt="Books image">
-    <div style="margin:30px;"><button style="height:30px;" type='submit'>SAVE</div>
+    <div style="margin:30px;"><button style="height:30px; width:100px;" type='submit'>SAVE</div>
     <div class='back-page'><a href="/books">Back to bookshelf</a></div>
+    <body style="background-color:#e9bdaf;">
     `
-
     res.send(form);
 })
 
@@ -108,7 +105,6 @@ router.get('/:id', (req, res)=>{
     <h3>Title: ${foundBook.bookName}</h3>
     <h3>Author: ${foundBook.author}</h3>
     <h3>${foundBook.pages} pages</h3>
-    <h3>${foundBook.borrowed ? 'Borrowed' : "Available"}</h3>
 
     <h3>${foundBook.borrowed ? 'This book is not available' : `<a href ='/borrow' style="border: solid; text-decoration: none;border-color:black; color:black; padding:10px; margin:20px;">BORROW</a>`}</h3>
 
