@@ -47,7 +47,7 @@ router.get('/', (req, res)=>{
     //print books.
     let printBooks = `
     <div>
-        <h2 class='books-h2'>Our bookshelf</h2>
+        <h2 class='books-h2'>Our bookshelf📚</h2>
     `
 
     //Link to add new book.
