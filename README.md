@@ -4,4 +4,6 @@ https://express-heroku-library.herokuapp.com/
 
 Node.js (Express) 
 
+npm start
+
 Deploy by Heroku.

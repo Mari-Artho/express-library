@@ -63,6 +63,7 @@ router.get('/', (req, res)=>{
         <a href='/books/${book.id}'>
         <img src='/images/${book.images}' width='180px' height='250px'>
         <p>${book.bookName} </p></a>
+        <p>${book.borrowed?"Not available":"Available"}</p>
         </div>
         </div>
         `
@@ -112,6 +113,7 @@ router.get('/:id', (req, res)=>{
     </div>
     `
     res.send(bookInfo);
+    // res.json(foundBook.borrowed);
 })
 
 //Save new book
@@ -128,7 +130,7 @@ router.post('/borrow', (req, res)=>{
     books.push(borrowBook)
   
     res.redirect('/books');
-    res.json(borrowBook);
+    res.json(borrowed);
   });
   
 

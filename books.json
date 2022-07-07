@@ -5,7 +5,7 @@
     "author": "Amanda Hesser",
     "pages": 336,
     "images": "amanda.jpg",
-    "borrowed": "false"
+    "borrowed": false
     },
     {
     "id":"nanoId.nanoid()",

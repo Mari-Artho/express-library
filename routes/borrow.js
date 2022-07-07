@@ -15,8 +15,8 @@ router.get("/", (req, res, next)=> {
     format = format.replace(/DD/, day.getDate());
  
     return format;
-}
-  
+  }
+
   let borrow = `
     <body style="background-color:#e9bdaf;">
     <div style="text-align:center; font:Helvetica; padding:30px; height:50px;">
