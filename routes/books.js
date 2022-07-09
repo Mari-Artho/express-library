@@ -2,9 +2,12 @@ const express = require('express');
 const nanoId = require('nanoid');
 const { json } = require('express/lib/response');
 var router = express.Router();
+// use local storage API to save data in files on the server side
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./books');
 
 //Book list
-let books = [
+let booksDefault = [
     {
     id:nanoId.nanoid(),
     bookName: 'Cooking for Mr. Latte',
@@ -38,6 +41,17 @@ let books = [
     borrowed: true   
     },
 ]
+
+let books;
+let bookJSON = localStorage.getItem("key");
+if (bookJSON != null){
+    let jsObj = JSON.parse(bookJSON);
+    console.log(jsObj);
+    books = jsObj;
+} else {
+    books = booksDefault;
+}
+console.log(books);
 
 //Print books
 router.get('/', (req, res)=>{
@@ -107,13 +121,13 @@ router.get('/:id', (req, res)=>{
     <h3>Author: ${foundBook.author}</h3>
     <h3>${foundBook.pages} pages</h3>
 
-    <h3>${foundBook.borrowed ? 'This book is not available' : `<a href ='/borrow' style="border: solid; text-decoration: none;border-color:black; color:black; padding:10px; margin:20px;">BORROW</a>`}</h3>
-
+    <h3><form action="/books/borrow/${foundBook.id}" method="POST">
+    <button type="submit">${foundBook.borrowed ? 'RETURN' : 'BORROW'}</button>
+    </h3>
     <div class='back-page'><a href="/books">Back to bookshelf</a></div>
-    </div>
-    `
+    </div>`
+
     res.send(bookInfo);
-    // res.json(foundBook.borrowed);
 })
 
 //Save new book
@@ -125,14 +139,17 @@ router.post('/newBook', (req, res)=>{
 });
 
 //Borrow a book
-router.post('/borrow', (req, res)=>{
-    let borrowBook = {...req.body, id: nanoId.nanoid(), borrowed:true}
-    books.push(borrowBook)
+router.post('/borrow/:id', (req, res)=>{
+    let foundBook = books.find((book)=> book.id == req.params.id)
+    foundBook.borrowed = !foundBook.borrowed;
+
+    let obj = JSON.stringify(books);
+    localStorage.setItem('key', obj)
   
     res.redirect('/books');
-    res.json(borrowed);
+    console.log("============================")
+    console.log(obj);
   });
   
-
 module.exports = router;
 

@@ -17,6 +17,8 @@ router.get("/", (req, res, next)=> {
     return format;
   }
 
+  console.log(req);
+
   let borrow = `
     <body style="background-color:#e9bdaf;">
     <div style="text-align:center; font:Helvetica; padding:30px; height:50px;">
@@ -27,7 +29,6 @@ router.get("/", (req, res, next)=> {
     </body>
   `
   res.send(borrow);
-  //res.json(borrow);
 })
 
   module.exports = router;

@@ -6,4 +6,6 @@ Node.js (Express)
 
 npm start
 
+npm i node-localstorage
+
 Deploy by Heroku.
