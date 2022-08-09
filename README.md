@@ -4,7 +4,7 @@ https://express-heroku-library.herokuapp.com/
 
 Node.js (Express) 
 
-npm start
+npm start => http://localhost:3000/
 
 npm i node-localstorage
 

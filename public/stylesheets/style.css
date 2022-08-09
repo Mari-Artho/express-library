@@ -52,3 +52,10 @@ padding-top: 20px;
   font-size: 1.5rem;
 }
 
+/* 480px, smart phone */
+@media screen and (max-width: 480px) {
+  body {
+    color: red;
+}
+
+}

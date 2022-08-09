@@ -51,7 +51,6 @@ if (bookJSON != null){
 } else {
     books = booksDefault;
 }
-console.log(books);
 
 //Print books
 router.get('/', (req, res)=>{
