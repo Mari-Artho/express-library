@@ -19,6 +19,11 @@ router.get("/", (req, res, next)=> {
 
   console.log(req);
 
+  //add css
+  let htmlHead = `
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/stylesheets/style.css">`
+
   let borrow = `
     <body style="background-color:#e9bdaf;">
     <div style="text-align:center; font:Helvetica; padding:30px; height:50px;">
@@ -28,7 +33,7 @@ router.get("/", (req, res, next)=> {
     </div>
     </body>
   `
-  res.send(borrow);
+  res.send(htmlHead + borrow);
 })
 
   module.exports = router;

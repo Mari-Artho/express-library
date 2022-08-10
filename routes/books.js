@@ -55,14 +55,15 @@ if (bookJSON != null){
 //Print books
 router.get('/', (req, res)=>{
     //add css
-    let htmlHead = '<link rel="stylesheet" href="/stylesheets/style.css">'
+    let htmlHead = `
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style.css">`
     
     //print books.
     let printBooks = `
     <div>
         <h2 class='books-h2'>Our bookshelf📚</h2>
     `
-
     //Link to add new book.
     printBooks += ` 
     <div class='add-newBook'><a href = '/books/newBook'>Add a new book</a></div>
@@ -91,19 +92,28 @@ router.get('/', (req, res)=>{
 
 //Form add new book.
 router.get('/newBook', (req, res)=>{
+    //add css
+    let htmlHead = `
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style.css">`
+
     let form = `
-    <body style="background-image:url('/images/white2.jpg');">
-    <form style="text-align:center; font:Helvetica; margin:30px; height:60px;" action='newBook' method='post'>
-    <h2>Add a new book</h2>
-    <p>NAME <input type='text' name='bookName'></p>
-    <p>AUTHOR <input type='text' name='author'></p>
-    <p>PAGES<input type='text' name='pages'></p>
-    <img alt="Books image">
-    <div style="margin:30px;"><button style="height:30px; width:100px;" type='submit'>SAVE</div>
-    <div class='back-page'><a href="/books">Back to bookshelf</a></div>
-    <body style="background-color:#e9bdaf;">
+    <body style="background-image:url('/images/white2.jpg')" class="newBook">
+    <form style="text-align:center; font:Helvetica; margin:30px;" action='newBook' method='post'>
+        <h2>Add a new book</h2>
+        <p>NAME <input type='text' name='bookName'></p>
+        <p>AUTHOR <input type='text' name='author'></p>
+        <p>PAGES<input type='text' name='pages'></p>
+        <img alt="Books image">
+    </form>
+    
+    <div class="submitAndBack">
+        <button class="saveBtn" type='submit'>SAVE</button>
+        <a href="/books">Back to bookshelf</a>
+    </div>
+    </body>
     `
-    res.send(form);
+    res.send(htmlHead + form);
 })
 
 //Print book's detail
@@ -112,6 +122,11 @@ router.get('/:id', (req, res)=>{
     if(!foundBook){
         return res.send('No book found with id ' + req.params.id)
     }
+
+    //add css
+    let htmlHead = `
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style.css">`
 
     let bookInfo = `
     <div style="text-align:center; font:Helvetica; padding:30px; height:50px;">
@@ -126,7 +141,7 @@ router.get('/:id', (req, res)=>{
     <div class='back-page'><a href="/books">Back to bookshelf</a></div>
     </div>`
 
-    res.send(bookInfo);
+    res.send(htmlHead + bookInfo);
 })
 
 //Save new book
@@ -146,7 +161,6 @@ router.post('/borrow/:id', (req, res)=>{
     localStorage.setItem('key', obj)
   
     res.redirect('/books');
-    console.log("============================")
     console.log(obj);
   });
   

@@ -12,7 +12,6 @@ body {
   font-size: 3rem;
   margin-top: 180px;
   justify-items: center;
-
   padding: 0.5em 1em;
   margin: 2em 0;
   font-weight: bold;
@@ -37,6 +36,17 @@ a {
   padding-top: 50px;
 }
 
+/* newbook */
+.newBook{
+  color:black;
+}
+
+.submitAndBack {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+
 .add-newBook{
 padding: 0.5em 2em;
 font-weight: bold;
@@ -46,16 +56,29 @@ height:40px;
 padding-top: 20px;
 }
 
-.back-page{
-  padding: 1em;
+.saveBtn {
+  display: block;
+	margin: auto;
+}
+
+.submitAndBack a  {
+  width: 300px;
+  color: darkblue;
+  text-align: center;
+  margin-top: 15px;;
+}
+
+.submitAndBack button {
+  color:black;
+  width:150px;
   font-weight: bold;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 /* 480px, smart phone */
 @media screen and (max-width: 480px) {
-  body {
-    color: red;
-}
-
+    .books-list {
+      flex-direction: column;
+    }
 }
